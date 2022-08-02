@@ -1,0 +1,9 @@
+1.gdb program --> run args
+2.break [file:]line or break [file:]function
+3.next or n
+4.step or s
+5.continue
+6.print/p expression
+7.display expression
+8.display
+9.quit
