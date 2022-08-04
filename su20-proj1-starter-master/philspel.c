@@ -55,6 +55,7 @@ int main(int argc, char **argv) {
 
   fprintf(stderr, "Processing stdin\n");
   processInput();
+  freeHashTable(dictionary);
 
   /*
    * The MAIN function in C should always return 0 as a way of telling
@@ -189,5 +190,6 @@ void processInput() {
       fputs(err,stdout);
     }
   }
+  free(input);
 }
 

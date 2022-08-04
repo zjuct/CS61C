@@ -71,3 +71,22 @@ void *findData(HashTable *table, void *key) {
   // 1. Find the right hash bucket with table->hashFunction.
   // 2. Walk the linked list and check for equality with table->equalFunction.
 }
+
+/*解决内存泄漏*/
+void freeList(struct HashBucket* head){
+  if(head == NULL){
+    return;
+  }
+  freeList(head->next);
+  free(head->key);  //free字符串
+  free(head);   //free结点自身
+}
+
+void freeHashTable(HashTable* table){
+  for(int i = 0;i < table->size; i++){
+    freeList(table->data[i]);
+  }
+  free(table->data);    //free结点数组
+  free(table);    //free哈希表自身
+}
+

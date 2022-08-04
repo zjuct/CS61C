@@ -58,4 +58,6 @@ extern void insertData(HashTable *table, void *key, void *data);
  */
 extern void *findData(HashTable *table, void *key);
 
+extern void freeHashTable(HashTable* table);
+
 #endif
