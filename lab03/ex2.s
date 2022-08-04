@@ -23,14 +23,14 @@ dest:
 main:
     addi t0, x0, 0
     addi s0, x0, 0
-    la s1, source
+    la s1, source       # s1,s2为source和dest的首地址
     la s2, dest
 loop:
-    slli s3, t0, 2
-    add t1, s1, s3
-    lw t2, 0(t1)
-    beq t2, x0, exit
-    add a0, x0, t2
+    slli s3, t0, 2      # t0为数组下标，s3为byte下标
+    add t1, s1, s3      # t1为source元素位置
+    lw t2, 0(t1)        # t2为source元素
+    beq t2, x0, exit    # 为0则退出
+    add a0, x0, t2      # a0为square参数
     addi sp, sp, -8
     sw t0, 0(sp)
     sw t2, 4(sp)
@@ -38,10 +38,10 @@ loop:
     lw t0, 0(sp)
     lw t2, 4(sp)
     addi sp, sp, 8
-    add t2, x0, a0
-    add t3, s2, s3
+    add t2, x0, a0      # a0为返回值
+    add t3, s2, s3      # t3为dest元素位置
     sw t2, 0(t3)
-    add s0, s0, t2
+    add s0, s0, t2      # s0为sum
     addi t0, t0, 1
     jal x0, loop
 square:
