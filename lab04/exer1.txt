@@ -1,0 +1,7 @@
+1.
+Mistake 1: In line 65, add should be replaced by lw
+Mistake 2: In line 68, t0 should be slli by 4 before add to t1
+Mistake 3: In line 71, t0,t1,t2 should be saved before called the function
+Mistake 4: In line 77, la should be replaced by lw
+Mistake 5: In line 78, lw should be replaced by mv
+
