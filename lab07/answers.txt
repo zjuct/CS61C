@@ -1,51 +1,51 @@
 Exercise 1
-	Scenario 1
-		1. 
-		2.
-		3.
+	Scenario 1	Hit rate: 0
+		1. Because there is only 1 element in each block, and the blocks have the same index
+		2. 0
+		3. Change step size to 1, which results in 0.5 hit rate
 
 	Scenario 2
-		1.
-		2.
-		3.
-		4.
-		5.
+		1. 2
+		2. Miss Hit Hit Hit. There are 2 elements in a block, and every element will be accessed twice. The first access is compulsory miss, and the rest three access will be hits.
+		3. 0.75
+		4. 1. Because the whole array is in the cache.
+		5.  Every block equals to the size of cache. 1024 map functions.
 
 	Scenario 3
-		1.
-		2.
-		3.
-		4.
-		5.
+		1. L1: 0.5   L2: 0   Overall: 0.5
+		2. 32 accesses. 16 misses.
+		3. 16 accesses. The number of accesses to the L2 cache equals to the number of misses in the L1 cache.
+		4. Rep Count. Because the size of L1 cache is half of the size of the array, so the hit rate of L1 cache wouldn't increase when repeat. But the size of L2 cache is equal to the size of array, so in the end of the first iteration of loop, the whole array is loaded into L2 cache.
+		5. If increase the number of blocks in L1, the hit rate of L1 and L2 will ramain the same. If increase block size of L1, the hit rate of L1 will increase, when L2 will remain the same.
 
 Exercise 2
-	ijk:
-	ikj:
-	jik:
-	jki:
-	kij:
-	kji:
+	ijk: A:n  B:1  C:0
+	ikj: A:n  B:0  C:n
+	jik: A:n  B:1  C:0
+	jki: A:1  B:0  C:1
+	kij: A:0  B:n  C:n
+	kji: A:1  B:0  C:1
 
-	1.
-	2.
-	3.
+	1. jki & kji are the two fastest, because they both have 2 of stride 1, and 1 of stride 0.
+	2. ikj & kij are the two slowest, because they both have 2 of stride n, and 1 of stride 0.
+	3. If the stride are lower, it is likely that have more hits.
 
 Exercise 3
 	Part 1
-		blocksize = 20, n = 100: 
-		blocksize = 20, n = 1000: 
-		blocksize = 20, n = 2000: 
-		blocksize = 20, n = 5000: 
-		blocksize = 20, n = 10000: 
+		blocksize = 20, n = 100: 0.004   0.007
+		blocksize = 20, n = 1000: 0.933 0.628
+		blocksize = 20, n = 2000: 18.982 3.678
+		blocksize = 20, n = 5000: 168.466 26.154
+		blocksize = 20, n = 10000: 839.023  109.144
 
-		1.
-		2.
+		1.  n >= 1000
+		2.  Because if the size of matrix is small, than the whole line would be in a block of cache
 
 	Part 2
-		blocksize = 50, n = 10000:
-		blocksize = 100, n = 10000:
-		blocksize = 500, n = 10000:
-		blocksize = 1000, n = 10000:
-		blocksize = 5000, n = 10000:
+		blocksize = 50, n = 10000:  131.257
+		blocksize = 100, n = 10000:  114.6
+		blocksize = 500, n = 10000:   139.283
+		blocksize = 1000, n = 10000:  170.268
+		blocksize = 5000, n = 10000:  802.391
 
-		1.
+		1. First quicker, than slower. Beacuse if the block is too huge, then it still need to put everything in the cache.

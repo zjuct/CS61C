@@ -16,6 +16,15 @@ void transpose_naive(int n, int blocksize, int *dst, int *src) {
  * multiple of the block size. */
 void transpose_blocking(int n, int blocksize, int *dst, int *src) {
     // YOUR CODE HERE
+    for(int i = 0;i<n;i+=blocksize){
+        for(int j = 0;j<n;j+=blocksize){
+            for(int s = 0;s<blocksize && i+s<n;++s){
+                for(int t = 0;t<blocksize && j+t<n;++t){
+                    dst[(j + t)*n + i + s] = src[(i + s)*n + j + t];
+                }
+            }
+        }
+    }
 }
 
 void benchmark(int *A, int *B, int n, int blocksize,
@@ -34,6 +43,15 @@ void benchmark(int *A, int *B, int n, int blocksize,
 
     gettimeofday( &start, NULL );
     transpose( n, blocksize, B, A );
+    /*
+    printf("\n");
+    for(int i = 0;i<n;i++){
+        for(int j = 0;j<n;j++){
+            printf("%d ",B[i*n+j]);
+        }
+        printf("\n");
+    }
+    */
     gettimeofday( &end, NULL );
 
     double seconds = (end.tv_sec - start.tv_sec) +
